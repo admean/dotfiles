@@ -1,0 +1,87 @@
+#!/usr/bin/env python
+
+from __future__ import print_function
+
+import os
+import sys
+
+
+def format_tip(s, prefix):
+    color_blue_normal = '\033[94m'
+    color_blue_bold = '\033[1;94m'
+    color_reset = '\033[0m'
+    return color_blue_normal + prefix + color_blue_bold + s + color_reset
+
+
+def parse_aliases(raw_aliases):
+    aliases = []
+    for alias_line in raw_aliases:
+        try:
+            alias, expanded = alias_line.strip().split('=', 1)
+            alias = alias.strip('\'')
+            expanded = expanded.strip('\'')
+            aliases.append((alias, expanded))
+        except:
+            # If this fails, it's likely a multi-line declared alias,
+            # which is currently not handled.
+            pass
+    return aliases
+
+
+def exclude_aliases(aliases, excludes):
+    return [alias for alias in aliases if alias[0] not in excludes]
+
+
+def expand_input(aliases, input):
+    max_exp, max_expanded = 0, None
+    for alias, expanded in aliases:
+        if input.startswith(alias + ' '):
+            if len(expanded) > max_exp:
+                max_expanded = input.replace(alias, expanded, 1)
+                max_exp = len(expanded)
+    return max_expanded if max_expanded else input
+
+
+def find_alias(aliases, input):
+    max_idx, res = 0, None
+    for alias, expanded in aliases:
+        if input == expanded or input.startswith(expanded + ' '):
+            idx = len(expanded)
+            if idx > max(len(alias), max_idx):
+                max_idx = idx
+                res = alias + input[idx:]
+    return res
+
+
+def run(aliases, input, expand, excludes):
+    original_input = input
+    if excludes:
+        aliases = exclude_aliases(aliases, excludes.split())
+
+    if expand:
+        input = expand_input(aliases, input)
+
+    alias = find_alias(aliases, input)
+
+    if alias == original_input:
+       return None
+    return alias
+
+
+def main(args):
+    if not args:
+        return
+
+    prefix   = os.getenv('ZSH_PLUGINS_ALIAS_TIPS_TEXT', 'Alias tip: ')
+    expand   = os.getenv('ZSH_PLUGINS_ALIAS_TIPS_EXPAND', '0') == '1'
+    excludes = os.getenv('ZSH_PLUGINS_ALIAS_TIPS_EXCLUDES', '')
+    input    = args[0].strip()
+    aliases  = parse_aliases(sys.stdin.readlines())
+    alias    = run(aliases, input, expand, excludes)
+
+    if alias:
+        print(format_tip(alias, prefix))
+
+
+if __name__ == '__main__':
+    main(sys.argv[1:])
