@@ -818,6 +818,13 @@ prompt_virtualenv() {
 # Prompt processing and drawing
 ################################################################
 
+# tmux vcs support
+function tmux_vcs_precommand() {
+  if [ -n "$TMUX" ]; then
+    tmux setenv TMUXPWD_$(tmux display -p "#I_#P") "$PWD"
+  fi
+}
+
 # Main prompt
 build_left_prompt() {
   defined POWERLEVEL9K_LEFT_PROMPT_ELEMENTS || POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir rbenv vcs)
@@ -882,7 +889,7 @@ $(print_icon 'MULTILINE_SECOND_PROMPT_PREFIX')"
       RPROMPT_SUFFIX=''
     fi
   else
-    PROMPT="%f%b%k$(build_left_prompt)"
+    PROMPT="%f%b%k$(build_left_prompt)$(tmux_vcs_precommand)"
     RPROMPT_PREFIX=''
     RPROMPT_SUFFIX=''
   fi

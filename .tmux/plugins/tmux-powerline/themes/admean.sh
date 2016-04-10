@@ -26,17 +26,16 @@ if [ -z $TMUX_POWERLINE_LEFT_STATUS_SEGMENTS ]; then
     "os_icon 236 255" \
     "hostname 33 0" \
     "lan_ip 24 255" \
-    "vcs_branch 29 88" \
+    "vcs_branch 2 236" \
     "vcs_compare 60 255" \
     "vcs_staged 64 255" \
     "vcs_modified 9 255" \
-    "vcs_others 245 0" \
+    "vcs_others 70 236" \
     )
 fi
 
 if [ -z $TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS ]; then
   TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS=(
-    "pwd 89 211" \
     "mailcount 9 255" \
     "now_playing 41 0" \
     "battery 234 172" \

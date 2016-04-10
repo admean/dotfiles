@@ -6,7 +6,7 @@ export TERM="xterm-256color"
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="powerlevel9k/powerlevel9k"
+export ZSH_THEME="powerlevel9k/powerlevel9k"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -58,6 +58,10 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games"
 export EDITOR='vim'
 # export MANPATH="/usr/local/man:$MANPATH"
 
+# Enables tmux autostart
+export ZSH_TMUX_AUTOSTART=true
+
+# Runs oh my zsh
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
