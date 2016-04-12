@@ -1,6 +1,7 @@
 # Path to your oh-my-zsh installation.
-export ZSH="/home/admean/.oh-my-zsh"
+export ZSH="/Users/admean/.oh-my-zsh"
 export TERM="xterm-256color"
+export FONTCONFIG_PATH="/opt/X11/lib/X11/fontconfig:/Users/admean/.fonts.conf.d"
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -54,9 +55,9 @@ plugins=(alias-tips dircycle gem git k rails ruby rvm tmux zsh-autosuggestions z
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games"
+# export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games"
+export PATH="/usr/local/git/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/admean/Library/Android/sdk"
 export EDITOR='vim'
-# export MANPATH="/usr/local/man:$MANPATH"
 
 # Enables tmux autostart
 export ZSH_TMUX_AUTOSTART=true

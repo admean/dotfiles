@@ -27,7 +27,6 @@ run_segment() {
 		done
 	fi
 
-  LAN_ICON=$'\UF109'
-	echo "$LAN_ICON ${lan_ip-N/a}"
+	echo " ${lan_ip-N/a}"
 	return 0
 }
