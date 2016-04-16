@@ -4,7 +4,9 @@
 # Source lib to get the function get_tmux_pwd
 source "${TMUX_POWERLINE_DIR_LIB}/tmux_adapter.sh"
 
-flat_symbol="⤚"
+flat_symbol=$'\uF0A9 '
+up_symbol=$'\uF0AA'
+down_symbol=$'\uF0AB'
 
 run_segment() {
 	tmux_path=$(get_tmux_cwd)
@@ -43,10 +45,10 @@ __parse_git_stats() {
 
 	# print out the information
 	if [[ $behind -gt 0 ]] ; then
-		local ret="↓ $behind"
+		local ret="$down_symbol $behind"
 	fi
 	if [[ $ahead -gt 0 ]] ; then
-		local ret="${ret}↑ $ahead"
+		local ret="${ret}$up_symbol $ahead"
 	fi
 	echo "$ret"
 }
