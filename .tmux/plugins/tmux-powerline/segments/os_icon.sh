@@ -18,7 +18,7 @@ run_segment() {
       ;;
     Linux)
       OS='Linux'
-      OS_ICON=$'\UF17C'
+      OS_ICON=$'\UE67D'
       ;;
     SunOS)
       OS='Solaris'

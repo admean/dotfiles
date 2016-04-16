@@ -24,21 +24,21 @@ TMUX_POWERLINE_DEFAULT_RIGHTSIDE_SEPARATOR=${TMUX_POWERLINE_DEFAULT_RIGHTSIDE_SE
 if [ -z $TMUX_POWERLINE_LEFT_STATUS_SEGMENTS ]; then
   TMUX_POWERLINE_LEFT_STATUS_SEGMENTS=(
     "os_icon 236 255" \
-    "hostname 33 0" \
-    "lan_ip 24 255" \
-    "vcs_branch 2 236" \
-    "vcs_compare 60 255" \
-    "vcs_staged 64 255" \
-    "vcs_modified 9 255" \
-    "vcs_others 70 236" \
+    "prefix 8 15" \
+    "vcs_branch 34 236" \
+    "vcs_compare 46 236" \
+    "vcs_staged 46 236" \
+    "vcs_modified 46 236" \
+    "vcs_others 46 236" \
+    "now_playing 41 0" \
     )
 fi
 
 if [ -z $TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS ]; then
   TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS=(
     "mailcount 9 255" \
-    "now_playing 41 0" \
     "battery 234 172" \
+    "lan_ip 233 12" \
     "date_day 16 123" \
     "date 16 123 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}" \
     "time 16 123 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}" \

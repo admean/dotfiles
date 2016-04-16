@@ -141,7 +141,10 @@ __battery_osx() {
 	__linux_get_bat() {
 		bf=$(cat $BAT_FULL)
 		bn=$(cat $BAT_NOW)
-		echo $(( 100 * $bn / $bf ))
+		level=$(( 100 * $bn / $bf ))
+		if [[ $level -le 100 ]]; then
+			echo $level
+		fi
 	}
 
 	__freebsd_get_bat() {
